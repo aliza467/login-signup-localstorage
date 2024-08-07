@@ -1,9 +1,12 @@
 import React from 'react';
 import { Route, Routes, useNavigate } from 'react-router-dom';
 import './App.css';
+import Cards from './Cards';
 import Login from './Login/Login';
 import Signup from './Signup/Signup';
 import Dashboard from './Dashboard/Dashboard';
+import Product from './Product';
+
 
 function App() {
   const handleFormSubmit = (e, navigate) => {
@@ -35,17 +38,31 @@ function App() {
   };
 
   return (
-    <div>
+
+    <>
+    
+    <Dashboard/>
+    
+  
+//     <div>
       <div>
         <Routes>
           <Route path="/login" element={<LoginForm onSubmit={handleFormSubmit} />} />
           <Route path="/signup" element={<SignupForm onSubmit={handleFormSubmit} />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/" element={<LoginForm onSubmit={handleFormSubmit} />} />
+          <Route path="/dashboard" element={<Dashboard />} /> 
+          <Route path="/products/:id" element={<Product />} />    
+           
+        
         </Routes>
       </div>
-    </div>
-  );
+      
+//     </div>
+
+</>
+  )
+ 
 }
 
 const LoginForm = ({ onSubmit }) => {
@@ -57,5 +74,6 @@ const SignupForm = ({ onSubmit }) => {
   const navigate = useNavigate();
   return <Signup onSubmit={(e) => onSubmit(e, navigate)} />;
 };
+
 
 export default App;

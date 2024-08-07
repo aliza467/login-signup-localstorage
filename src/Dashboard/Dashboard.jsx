@@ -7,10 +7,18 @@ import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import { Link } from 'react-router-dom';
+import { Dining } from '@mui/icons-material';
+import { Card } from 'react-bootstrap';
+import { productData } from '../../data';
+import Cards from '../Cards';
+
+
+
+
 
 const Dashboard = () => {
   return (
-    <div>
+    <>
         <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
         <Toolbar>
@@ -30,10 +38,21 @@ const Dashboard = () => {
           <Button component={Link} to="/signup" color="inherit">Signup</Button>
         </Toolbar>
       </AppBar>
-    </Box>
+    </Box><br /><br />
+    
+
+    {productData.map((e,i)=>{
+      return(
+        <div key={i} style={{display:"inline-block", margin:"30px" , padding:"20px"}}>
+          <Cards style={{  width:"240px", height:"280px" }} id={e.id} title={e.title} desc={e.description} image={e.image} />
+        </div>
+      )
       
-    </div>
+    })}
+    </>  
+    
   )
+ 
 }
 
 export default Dashboard
